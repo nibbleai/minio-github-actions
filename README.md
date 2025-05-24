@@ -4,7 +4,7 @@ Pre-configured MinIO Docker image for GitHub Actions workflows.
 
 ## Why This Exists
 
-GitHub Actions service containers can't accept command arguments. The official MinIO image requires `minio server /data` to start, making it incompatible with GitHub Actions services.
+As of May 2025, GitHub Actions service containers [can't accept command arguments](https://github.com/orgs/community/discussions/26688). The official MinIO image requires `minio server /data` to start, making it incompatible with GitHub Actions services.
 
 This image solves that by pre-configuring the command argument.
 
