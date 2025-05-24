@@ -1,11 +1,28 @@
-# minio-github-actions
+# MinIO GitHub Actions
 
-https://min.io/
+Pre-configured MinIO Docker image for GitHub Actions workflows.
 
-A Dockerfile that builds an Minio server image ready to be used in GitHub Actions.
+## Why This Exists
 
-Use this image:
+GitHub Actions service containers can't accept command arguments. The official MinIO image requires `minio server /data` to start, making it incompatible with GitHub Actions services.
 
-```bash
-$ docker pull ghcr.io/nibbleai/minio:latest
+This image solves that by pre-configuring the command argument.
+
+## Example usage
+
+```yaml
+services:
+  minio:
+    image: ghcr.io/nibbleai/minio:latest
+    ports:
+      - 9000:9000
+    env:
+      MINIO_ROOT_USER: minio
+      MINIO_ROOT_PASSWORD: minio123
 ```
+
+MinIO will be available at `http://localhost:9000`.
+
+## Disclaimer
+
+**Not affiliated with MinIO, Inc.** This is an unofficial wrapper around the official MinIO image. MinIO is licensed under GNU AGPLv3. For official support, visit [min.io](https://min.io/).
